@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A record will be locked when edited by a user, to prevent access by other users. Record locks can be removed by selecting the checkbox and chosing: `Remove record locks` in the list overview.
+A record will be locked when edited by a user, to prevent access by other users. Record locks can be removed by selecting the checkbox and chosing: `Remove record locks` in the list overview or by saving the record.
 
 A user is only allowed to remove it's own locks. 
 
