@@ -1,0 +1,11 @@
+{
+    "name": "douma/laravel-nova-record-locks",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Stefan Douma",
+            "email": "douma4@gmail.com"
+        }
+    ],
+    "require": {}
+}
