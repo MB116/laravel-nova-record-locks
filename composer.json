@@ -7,5 +7,10 @@
             "email": "douma4@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Douma\\RecordLocks": "src/"
+        },
+    },
     "require": {}
 }
