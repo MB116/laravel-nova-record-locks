@@ -27,7 +27,7 @@ Register the service provider `config/app.php`:
 For now create a database table. 
 We will provide a migration for this in the future. 
 
-```
+```sql
 CREATE TABLE `record_locks` (
   `model` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
