@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Douma\\RecordLocks": "src/"
+            "Douma\\RecordLocks\\": "src/"
         }
     },
     "require": {}
