@@ -22,6 +22,23 @@ Register the service provider `config/app.php`:
 
 `Douma\RecordLocks\ServiceProvider::class`
 
+### Create database table
+
+For now create a database table. 
+We will provide a migration for this in the future. 
+
+```
+CREATE TABLE `record_locks` (
+  `model` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `model_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci 
+```
+
 ### Create a policy class
 
 Create a policy class for lists you wish to protect. If you have no policy, just `return true` for each method. Register the policy class in `config/record_locks.php` in the `policies` namespace. 
@@ -69,3 +86,5 @@ This package is still in beta.
 Under construction. 
 
 ## Nicer images
+
+## Migrations
