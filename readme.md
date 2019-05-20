@@ -10,7 +10,9 @@ A user is only allowed to remove it's own locks.
 
 ![](https://i.imgur.com/y2HIKq6.png)
 
-## Configuration
+## Configuration & Installation
+
+`composer require douma/laravel-nova-record-locks`
 
 Publish the ServiceProvider:
 
