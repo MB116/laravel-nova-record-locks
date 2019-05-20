@@ -25,14 +25,14 @@ Create a policy class for lists you wish to protect. If you have no policy, just
 Register the `LockedBy` field in the fields method:
 
 ```php
-	public function fields(Request $request)
-	{
-		return [
-			ID::make()->sortable(),
-			LockedBy::make(),
-			//... other 
-		];
-    }
+public function fields(Request $request)
+{
+    return [
+        ID::make()->sortable(),
+        LockedBy::make(),
+        //... other 
+    ];
+}
 ```
 
 This makes the lock symbol visible in the list. 
@@ -43,13 +43,13 @@ This makes the lock symbol visible in the list.
 Register `RemoveRecordLock` in the actions method:
 
 ```php
-    public function actions(Request $request)
-    {
-        return [
-            //...others
-            new RemoveRecordLock()
-        ];
-    }
+public function actions(Request $request)
+{
+    return [
+        //...others
+        new RemoveRecordLock()
+    ];
+}
 ```
 
 This makes it possible to remove locks from the list overview. 
