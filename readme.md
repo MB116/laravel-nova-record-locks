@@ -27,7 +27,7 @@ Register the service provider `config/app.php`:
 For now create a database table. 
 We will provide a migration for this in the future. 
 
-```sql
+```
 CREATE TABLE `record_locks` (
   `model` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,7 +41,21 @@ CREATE TABLE `record_locks` (
 
 ### Create a policy class
 
-Create a policy class for lists you wish to protect. If you have no policy, just `return true` for each method. Register the policy class in `config/record_locks.php` in the `policies` namespace. 
+Create a policy class for lists you wish to protect. If you have no policy, just `return true` for each method. 
+Register the policy class in `config/record_locks.php` in the `policies` namespace. 
+
+### Register the model 
+
+Register the model you wish to protect in the `config/record_locks.php`, in the `enabled`-namespace:
+For example:
+
+```php
+'enabled'=>[
+    \App\MyModel::class,
+    ...others
+]
+```
+
 
 ### Add action to list
 
@@ -77,13 +91,34 @@ public function actions(Request $request)
 
 This makes it possible to remove locks from the list overview. 
 
+## Clear locks 
+
+To clear the locks, for example, every night, register and run the following command:
+
+`Douma\RecordLocks\Commands\RemoveLocks`
+
+And run:
+
+`php artisan locks:clear`
+
+## Admin tool
+
+In the sidebar the menu item `Record Locks` will be visible when registering
+the tool in the `NovaServiceProvider`:
+
+```php
+public function tools()
+{
+    return [
+        new RecordLocksTool()
+    ];
+}
+```
+
+You can create a policy which protects this module
+from being modified by everyone. 
+
 # Todo
-
-This package is still in beta. 
-
-## Admin feature
-
-Under construction. 
 
 ## Nicer images
 

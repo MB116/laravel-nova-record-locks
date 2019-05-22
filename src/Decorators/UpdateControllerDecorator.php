@@ -31,7 +31,10 @@ class UpdateControllerDecorator extends Controller
             throw new HttpException(403);
         }
 
-        $this->lockRepository->create(get_class($resource->model()), $id, auth()->user()->id);
+        if(in_array(get_class($resource->model()), config('record_locks.enabled'))) {
+            $this->lockRepository->create(get_class($resource->model()), $id, auth()->user()->id);
+        }
+
         return $this->controller->index($request);
     }
 

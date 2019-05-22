@@ -31,4 +31,10 @@ class RecordLockRepository
             $model, $id, $userId
         ]);
     }
+
+    public function clear()
+    {
+        \DB::statement('DELETE FROM record_locks');
+        \DB::statement('TRUNCATE record_locks');
+    }
 }
