@@ -24,8 +24,10 @@ class LockedBy extends Line
         ]);
 
         if (isset($select[0])) {
-            $user = auth()->user();
-            $stauts = ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->name;
+            $lockedBy = \DB::table('users')->select('name')->where('id', $select[0]->user_id)->first();
+
+            $currentUser = auth()->user()->id;
+            $stauts = ($select[0]->user_id == $currentUser) ? 'Заблокированно вами' : 'Редактирует ' . $lockedBy->name;
 
             $this->withMeta(['value' => $stauts]);
         } else {
