@@ -2,9 +2,9 @@
 
 namespace Douma\RecordLocks\Fields;
 
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Line;
 
-class LockedBy extends Text
+class LockedBy extends Line
 {
     public function __construct($name = 'Is locked', $attribute = '', $resolveCallback = null)
     {
@@ -24,17 +24,12 @@ class LockedBy extends Text
         ]);
 
         if (isset($select[0])) {
-            $callback = function () use ($resource, $attribute, $select) {
-                $user = auth()->user();
-                return ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->id;
-            };
-            $this->withMeta('value', $callback);
+            $user = auth()->user();
+            $stauts = ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->id;
+
+            $this->withMeta(['value' => $stauts]);
         } else {
-            $callback = function () use ($resource, $attribute, $select) {
-                $user = auth()->user()->name;
-                return $user;
-            };
-            $this->withMeta('value', $callback);
+            $this->withMeta(['value' => '']);
         }
     }
 }
