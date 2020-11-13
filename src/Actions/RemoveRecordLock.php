@@ -14,6 +14,13 @@ class RemoveRecordLock extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * Get the displayable name of the action.
+     *
+     * @return string
+     */
+    public $name  = 'Разблокировать';
+
     private $lockRepository;
 
     public function __construct()
