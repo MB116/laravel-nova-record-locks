@@ -2,9 +2,9 @@
 
 namespace Douma\RecordLocks\Fields;
 
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
 
-class LockedBy extends Image
+class LockedBy extends Text
 {
     public function __construct($name = 'Is locked', $attribute = '', $resolveCallback = null)
     {
@@ -23,19 +23,18 @@ class LockedBy extends Image
             $modelId
         ]);
 
-        if(isset($select[0])) {
+        if (isset($select[0])) {
             $callback = function () use ($resource, $attribute, $select) {
-                $user = auth()->user()->id;
-                return ($select[0]->user_id == $user) ? 'https://i.imgur.com/CXdZka4.png' : 'https://i.imgur.com/h6KHI23.png';
+                $user = auth()->user();
+                return ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->id;
             };
-            $this->preview($callback)->thumbnail($callback);
-        } else
-        {
+            $this->withMeta('value', $callback);
+        } else {
             $callback = function () use ($resource, $attribute, $select) {
-                $user = auth()->user()->id;
-                return 'https://i.imgur.com/MfFWDSm.png';
+                $user = auth()->user()->name;
+                return $user;
             };
-            $this->preview($callback)->thumbnail($callback);
+            $this->withMeta('value', $callback);
         }
     }
 }
