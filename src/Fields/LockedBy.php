@@ -25,7 +25,7 @@ class LockedBy extends Line
 
         if (isset($select[0])) {
             $user = auth()->user();
-            $stauts = ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->id;
+            $stauts = ($select[0]->user_id == $user->id) ? 'Заблокированно вами' : 'Заблокированно ' . $user->name;
 
             $this->withMeta(['value' => $stauts]);
         } else {
