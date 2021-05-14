@@ -89,7 +89,6 @@ class RecordLocks extends Resource
      */
     public function actions(Request $request)
     {
-        return [
-        ];
+        return [];
     }
 }

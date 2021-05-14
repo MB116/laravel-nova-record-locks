@@ -31,7 +31,7 @@ class LockedBy extends Line
 
             $this->withMeta(['value' => $stauts]);
         } else {
-            $this->withMeta(['value' => '']);
+            $this->withMeta(['value' => 'Свободен']);
         }
     }
 }
