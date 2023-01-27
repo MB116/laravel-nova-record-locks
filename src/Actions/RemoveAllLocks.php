@@ -10,16 +10,18 @@ use Laravel\Nova\Fields\ActionFields;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 
-class RemoveRecordLock extends Action
+class RemoveAllLocks extends Action
 {
     use InteractsWithQueue, Queueable, SerializesModels;
+
+    public $standalone = true;
 
     /**
      * Get the displayable name of the action.
      *
      * @return string
      */
-    public $name  = 'Разблокировать';
+    public $name  = 'Разблокировать все материалы';
 
     private $lockRepository;
 
@@ -38,7 +40,7 @@ class RemoveRecordLock extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach($models as $model) {
-            $this->lockRepository->deleteLocks(get_class($model), $model->id);
+            $this->lockRepository->clear();
         }
     }
 
