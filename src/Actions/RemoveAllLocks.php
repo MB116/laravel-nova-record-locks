@@ -39,9 +39,7 @@ class RemoveAllLocks extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
-        foreach($models as $model) {
-            $this->lockRepository->clear();
-        }
+        $this->lockRepository->clear();
     }
 
     /**
